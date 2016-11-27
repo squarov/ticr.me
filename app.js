@@ -4,9 +4,12 @@ var request = require('koa-request');
 var app = koa();
  
 app.use(function *() {
+	
+	var url = this.request.url;
+	url = url && url != '/' ? url : '/price?fsym=BTC&tsyms=USD';
  
     var options = {
-    	url: 'https://www.cryptocompare.com/api/data'+this.request.url,
+    	url: 'https://www.cryptocompare.com/api/data'+url,
         headers: { 'User-Agent': 'request' }
     };
  
